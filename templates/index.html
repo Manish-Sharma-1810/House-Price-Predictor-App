@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename ='style.css') }}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>House-Price-Prediction-App</title>
+  </head>
+  
+ <body>
+
+      <!----- Navbar from here ----->
+
+      <nav class="navbar navbar-expand-lg" style="background-color: azure;">
+        <div class="container">
+         <a class="navbar-brand" href="#">Navbar</a>
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+         </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#feature">Features</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#resources">Resources</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about_me">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+    </div>
+  </nav>
+
+
+
+  <section class="main py-5">
+      <div class="container py-5">
+          <div class="row py-5">
+              <div class="col-lg-10 py-5 mx-auto">
+                  <h1 class="text-white text-center" style="text-shadow:7px 10px 7px black;">Find Your Dream Home</h1>
+                  <p class="text-white text-center" style="text-shadow:5px 5px 8px black;">Predicting the House price using Machine Learning</p>
+
+                  <div class="card mt-4" id="home" style="opacity: 0.92;
+                  border: 1rem solid rgb(158, 255, 68);
+                  border-radius: 30px; background-color: azure;">
+                      <div class="card-body">
+                          <div class="column">
+
+                                <!---------- Main Input For Receiving Query to our ML ---------->
+                                <div class="row-cols-1">
+
+                                    <form action="/predict"method="POST">
+
+                                        <h2 style="color: rgb(253, 51, 0); text-align: center; text-shadow:2px 3px 8px rgb(68, 56, 56);"><b>Predict House Prices</b></h2>
+                                        <br>
+
+                                        <table>
+
+                                            <!---------- Average Area Income ---------------------------------------------------------->
+                                            <tr>
+                                                <td><sup>*</sup> Average Income (per annum) </td>
+                                                <td>
+                                                    <select class="mt-2" name="avg-income" id="avg-income" required="*">
+                                                        <option value="">----------Select:----------</option>
+                                                        <option value="10000">10K</option>
+                                                        <option value="15000">15K</option>
+                                                        <option value="20000">20K</option>
+                                                        <option value="25000">25K</option>
+                                                        <option value="30000">30K</option>
+                                                        <option value="35000">35K</option>
+                                                        <option value="40000">40K</option>
+                                                        <option value="45000">45K</option>
+                                                        <option value="50000">50K</option>
+                                                        <option value="55000">55K</option>
+                                                        <option value="60000">60K</option>
+                                                        <option value="65000">65K</option>
+                                                        <option value="70000">70K</option>
+                                                        <option value="75000">75K</option>
+                                                        <option value="80000">80K</option>
+                                                        <option value="85000">85K</option>
+                                                        <option value="90000">90K</option>
+                                                        <option value="95000">95K</option>
+                                                        <option value="100000">100K</option>
+                                                        <option value="105000">105K</option>
+                                                        <option value="110000">110K</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            
+                                            <!---------- Average Area House Age ---------------------------------------------------------->
+                                            <tr>
+                                                <td><sup>*</sup>House Age (in years)</td>
+                                                <td>
+                                                    <select class="mt-2" name="house-age" id="house-age" required="*">
+                                                        <option value="">----------Select:----------</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3 </option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+
+                                            <!---------- Average Area Number of Rooms ---------------------------------------------------------->
+                                            <tr>
+                                                <td><sup>*</sup>Total number of Rooms</td>
+                                                <td>
+                                                    <select class="mt-2" name="rooms" id="rooms" required="*">
+                                                        <option value="">----------Select:----------</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3 </option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+
+                                             <!---------- Average Area Number of Bedrooms ---------------------------------------------------------->
+                                             <tr>
+                                                <td><sup>*</sup>Total number of Bedrooms</td>
+                                                <td>
+                                                    <select class="mt-2" name="bedrooms" id="bedrooms" required="*">
+                                                        <option value="">----------Select:----------</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3 </option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+
+                                             <!---------- Area Population ---------------------------------------------------------->
+                                             <tr>
+                                                <td><sup>*</sup>Area Population</td>
+                                                <td>
+                                                    <select class="mt-2" name="population" id="population" required="*">
+                                                        <option value="">----------Select:----------</option>
+                                                        <option value="1000">1K</option>
+                                                        <option value="2000">2K</option>
+                                                        <option value="5000">5K</option>
+                                                        <option value="10000">10K </option>
+                                                        <option value="15000">15K</option>
+                                                        <option value="20000">20K</option>
+                                                        <option value="25000">25K</option>
+                                                        <option value="30000">30K</option>
+                                                        <option value="35000">35K</option>
+                                                        <option value="40000">40K</option>
+                                                        <option value="45000">45K</option>
+                                                        <option value="50000">50K</option>
+                                                        <option value="55000">55K</option>
+                                                        <option value="60000">60K</option>
+                                                        <option value="65000">65K</option>
+                                                        <option value="70000">70K</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <br>
+                                        <br>
+                                        <p><button type="submit" class="predict-btn"><b>Predict</b></button></p>
+
+                                    </form>
+                                    
+                                    <br>
+                                    <h4><b style="text-shadow:3px 3px 8px rgb(75, 75, 75);">{{text1}}</b>
+                                        <b style="color: red; text-shadow:6px 6px 6px rgb(253, 237, 16);">{{predicted_value}}</b>
+                                        <b style="text-shadow:3px 3px 8px rgb(75, 75, 75);">{{text2}}</b>
+                                    </h4>
+                                    <br>
+
+                                </div>
+
+                         </div>
+                     </div>
+                 </div> 
+             </div>
+         </div>
+      </div>
+  </section>
+
+  <section class="aboutapp py-4" id="feature">
+      ,<div class="container" style="background-color: azure;">
+          <div class="col-lg-11">
+              <h1 class="text-center py-3"><b style="text-shadow:3px 3px 8px rgb(70, 70, 70);">How does it work ?</b></h1>
+              <p class="py-2">
+                  This app (House Price Predictor) takes five arguments as selected above
+                  and gives you approximate prices of your dream house which you wish bo buy.
+                  <p>
+                      <h4 style="color: rgb(236, 55, 23);">Note :</h4>
+                      <ul>
+                          <li>Model used in this model is trained with <a class="data-link" href="https://github.com/Manish-Sharma-1810/Data-Science-and-Machine-Learning-Projects/blob/master/MyProjects/05.%20House-Price-Prediction/USA_Housing.csv" target="_blank">USA Housing Dataset</a></li>
+                          <li>We preproccessed the data and perform EDA before the model training.</li>
+                          <li>This model not gives the exact price of your house, But it gives the approximate
+                              value of the house which can slightly varies from the actual price of the house.
+                          </li>
+                          <li>If you are try to predict the prices of houses which are ouside the USA,
+                              then this model may gives you a significant difference in prices or may be predic wrong prices of house. 
+                              Becaouse this model has trained with USA Housing Dataset (All houses are located in United States).
+                          </li>
+                      </ul>
+                  </p>
+
+                  <br>
+
+                  <p>
+                      This app basically based on a Non-Linear Regression model (Supervised Machine Learning)
+                      which is trained with a labeled dataset, and based on that fit the regression model and find the parameters (θs) for 
+                      hypotesis function (h(x)). This hypothesis function gives a general trend. Based on that trend this model predicts the 
+                      new output for the new input data which in not present in the dataset. We already tested our model on test data, which 
+                      tells that our model is roughly 92% accurate.
+                  </p>
+
+                  <br>
+
+                  <p>
+                    <h1 class="text-center py-1" style="color: rgb(255, 100, 0); text-shadow:6px 6px 6px rgb(210, 210, 160);"><b>Technologies used</b></h1>
+                  </p>
+
+                  <div class="cntainer">
+                      <div class="row">
+
+                          <div class="col-lg-4">
+                            <p>
+                                <h4 class="py-1" style="color: blue;">OS</h4>
+                                <ul>
+                                    <li>Linux-Ubuntu: 20.04</li>
+                                </ul>
+                                <h4 class="py-1" style="color: blue;">IDE & Tools</h4>
+                                <ul>
+                                    <li>Visual Studio Code</li>
+                                    <li>Jupyter Notebook</li>
+                                </ul>
+                                <h4 class="py-1" style="color: blue;">Programing Lenguage</h4>
+                                <ul>
+                                    <li>Python: 3.9.2</li>
+                                </ul>
+                                <h4 class="py-1" style="color: blue;">ML model used</h4>
+                                <ul>
+                                    <li>Non-Linear Regression Model</li>
+                                    <li>Train-test split- 7:3</li>
+                                </ul>
+                               
+                            </p>
+                          </div>
+
+                          <div class="col-lg-4">
+                            <p>
+                                <h4 class="py-1" style="color: blue;">For API</h4>
+                                <ul>
+                                    <li>Python-Flask</li>
+                                </ul>
+                                <h4 class="py-1" style="color: blue;">Python Libraries</h4>
+                                <ul>
+                                    <li><b>For Exploratory Data Analysis (EDA)</b>
+                                        <ol>
+                                            <li>NumPy</li>
+                                            <li>Pandas</li>
+                                            <li>Matplotlib</li>
+                                            <li>Seaborn</li>
+                                            <li>Plotly</li>
+                                        </ol>
+                                    </li>
+                                    <li><b>Model Training & Prediction</b>
+                                        <ol>
+                                            <li>Scikit-learn</li>
+                                        </ol>
+                                    </li>
+                                    <li><b>For API</b>
+                                        <ol>
+                                            <li>Python-Flask</li>
+                                        </ol>
+                                    </li>
+                                    <li><b>Saving Model</b>
+                                        <ol>
+                                            <li>Python-Pickle</li>
+                                        </ol>
+                                    </li>
+                                </ul>
+                            </p>
+                          </div>
+
+                          <div class="col-lg-4">
+                            <p>
+                                <h4 class="py-1" style="color: blue;">Front-End Design</h4>
+                                <ul>
+                                    <li>HTML:5</li>
+                                    <li>CSS:3</li>
+                                    <li>Bootstrap:4</li>
+                                </ul>
+                                <h4 class="py-1" style="color: blue;">For Deployment</h4>
+                                <ul>
+                                    <li>Heroku (PaaS)</li>
+                                    <li>GitHub (Source code)</li>
+                                </ul>
+
+                            </p>
+                          </div>
+
+                      </div>
+                  </div>
+
+              </p>
+          </div>
+      </div>
+  </section>
+
+  <section class="resource py-0" id="resources">
+      <div class="container" style="background-color: azure;">
+          <div div class="col-lg-4">
+            <h2 class="py-3" style="color: rgb(255, 100, 0); text-shadow:1px 5px 5px rgb(168, 136, 136);">Resources</h2>
+            <p class="py-0">
+                <ul>
+                    <li><a class="resourcelink" style="text-decoration: none;" href="#" target="_blank">Source Code</a></li>
+                    <li><a class="resourcelink" style="text-decoration: none;" href="#" target="_blank">Jupyter file</a></li>
+                    <li><a class="resourcelink" style="text-decoration: none;" href="#" target="_blank">Dataset</a></li>
+                    <li><a class="resourcelink" style="text-decoration: none;" href="#" target="_blank">Requrements file</a></li>
+                </ul>
+                <br>
+            </p>
+          </div>
+      </div>
+  </section>
+
+  <section class="aboutme py-4"  id="about_me">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-4">
+                  <img src="{{ url_for('static', filename ='my_img.jpg') }}" class="img-fluid" alt="">
+              </div>
+              <div class="col-lg-8" style="background-color: azure;">
+                  <h1 class="text-center py-3" style="color: rgb(255, 100, 0); text-shadow:6px 6px 6px rgb(210, 210, 160);">About Me</h1>
+                  <h4 class="py-1" style="color: rgb(0, 0, 230); text-shadow:1px 6px 5px rgb(127, 210, 243);"><b>Manish Sharma</b></h4>
+                  <p class="py-2">
+                    I'm a B.Tech final year student specialised in <b>Computer Science and Engineering</b> at the
+                    <i> Institute of Engineering and Rural Technology, Prayagraj (Uttar Pradesh), India- 211002.</i>
+                  </p>
+
+                  <p class="py-2">
+                    Strong in Data structures and Algorithms with intuitive problem-solving skills.
+                    Proficient in C, C++, C#, PYTHON, JAVA, JAVASCRIPT, PHP, SQL, ASP.NET,
+                    and some RDMS like MySQL, Oracle. Also have experience on AWS (EC2), Google Cloud Plateform, Docker, Heroku.
+                    I'm very passionate about Machine Learning, its algorithms, and Mathematics behind it,
+                    and love to implementing & launching new projects based on Machine Learning.
+                    I have also sound knowledge and experience in Full-Stack development.
+                    I have ability to translate business requirements into technical solutions.
+                    Looking to start the career as an entry-level software engineer with a reputed firm driven by technology.
+                  </p>
+
+                  <p>
+                      <h4 class="py-1" style="color: rgb(0, 0, 230); text-shadow:1px 6px 5px rgb(127, 210, 243);"><b>References</b></h4>
+                      <ul>
+                          <li><a class="reflink" style="text-decoration: none;" href="https://linkedin.com/in/manish-kumar-1810" target="_blank">LinkedIn</a></li>
+                          <li><a class="reflink" style="text-decoration: none;" href="https://github.com/Manish-Sharma-1810" target="_blank">GitHub</a></li>
+                          <li><a class="reflink" style="text-decoration: none;" href="https://coursera.org/share/12ac1e84abfe74bbc1a932cd1d44c2c1" target="_blank">Coursera</a></li>
+                      </ul>
+                  </p>
+
+              </div>
+          </div>
+      </div>
+  </section>
+
+
+  <footer id="contact">
+      <div class="container pt-3">
+          <div class="row">
+              <div class="col-lg-6 text-center">
+                  <p class="text-center">
+                      House Price Predictor App using Machine Learning  © Copyright 2021
+                      - All Rights Reserved 
+                      <br>
+                      <br>
+                      Developer - <b style="color: rgb(255, 30, 0);">Manish Sharma</b>
+                      <br>
+                      Email - <i style="color: blue;">manishkumar.sharma0103@gmailcom</i>
+                  </p>
+              </div>
+              <div class="offset-3 col-lg-3 py-2">
+                  <span><a href="https://linkedin.com/in/manish-kumar-1810" target="_blank" class="fa fa-linkedin" style="text-decoration: none;"></a></span>
+                  <span><a href="https://github.com/Manish-Sharma-1810" target="_blank" class="fa fa-github" style="text-decoration: none;"></a></span>
+                  <span><a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&to=manishkumar.sharma0103@gmail.com" target="_blank" class="fa fa-google" style="text-decoration: none;"></a></span>
+                  <span><a href="https://web.whatsapp.com" target="_blank" class="fa fa-whatsapp" style="text-decoration: none;"></a></span>
+                  <br>
+                  <br>
+                  <p class="text-center">
+                      <i style="color: blue; font-family: sans-serif;">+91-9651638734</i>
+                  </p>
+              </div>
+          </div>
+      </div>
+  </footer>
+
+
+
+
+    
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+      <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+        -->
+ </body>
+</html>
